@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS biblioteca_db;
 CREATE DATABASE biblioteca_db;
 USE biblioteca_db;
 
@@ -16,12 +17,12 @@ CREATE TABLE Usuario (
     matricula VARCHAR(50) PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     endereco VARCHAR(255),
-    tipo_usuario VARCHAR(20) NOT NULL, -- Vai guardar 'ALUNO' ou 'PROFESSOR'
-    curso VARCHAR(100),       -- Fica nulo se for professor
-    departamento VARCHAR(100) -- Fica nulo se for aluno
+    tipo_usuario VARCHAR(20) NOT NULL, 
+    curso VARCHAR(100),       
+    departamento VARCHAR(100) 
 );
 
--- 3. Tabela de Empréstimos (Faz a ligação entre quem pegou e o que pegou)
+-- 3. Tabela de Empréstimos
 CREATE TABLE Emprestimo (
     id INT AUTO_INCREMENT PRIMARY KEY,
     matricula_usuario VARCHAR(50),
@@ -46,7 +47,7 @@ CREATE TABLE Reserva (
     FOREIGN KEY (id_livro) REFERENCES Livro(id)
 );
 
--- 5. Tabela de Multas (Ligada diretamente ao Empréstimo que gerou o atraso)
+-- 5. Tabela de Multas
 CREATE TABLE Multa (
     id_emprestimo INT PRIMARY KEY,
     valor DECIMAL(10, 2) NOT NULL,
